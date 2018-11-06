@@ -10,9 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    let url = URL(string: "https://itunes.apple.com/search")!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, responce, error) in
+            if let data = data, let string = String(data: data, encoding: .utf8) {
+                print(string);
+            }
+        }
+        
+        task.resume()
     }
 
 
