@@ -10,12 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let url = URL(string: "https://itunes.apple.com/search")!
+    let baseURL = URL(string: "https://itunes.apple.com/search")!
+    
+    let query = [
+        "term":"lana",
+        "country":"ru",
+        "callback":"",
+        "limit":"3",
+        "lang":"ru_ru",
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let task = URLSession.shared.dataTask(with: url) { (data, responce, error) in
+        let task = URLSession.shared.dataTask(with: baseURL.withQueries(query)!) { (data, responce, error) in
             if let data = data, let string = String(data: data, encoding: .utf8) {
                 print(string);
             }
