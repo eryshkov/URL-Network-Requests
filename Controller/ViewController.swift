@@ -9,7 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     let baseURL = URL(string: "https://itunes.apple.com/search")!
     
     let query = [
@@ -20,18 +20,32 @@ class ViewController: UIViewController {
         "lang":"ru_ru",
     ]
     
+    var artists = [Artist]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let task = URLSession.shared.dataTask(with: baseURL.withQueries(query)!) { (data, responce, error) in
-            if let data = data, let string = String(data: data, encoding: .utf8) {
-                print(string);
+        
+    }
+
+    @IBAction func parseJson(_ sender: UIBarButtonItem) {
+        if let urlArtist = baseURL.withQueries(query) {
+            if let data = try? Data(contentsOf: urlArtist) {
+                
+                let decoder = JSONDecoder()
+
+                do {
+                    let jsonArtists = try decoder.decode(Artists.self, from: data)
+                    artists = jsonArtists.results
+                    print(artists)
+                }catch let error {
+                    print(error)
+                }
             }
         }
         
-        task.resume()
+        
     }
-
 
 }
 

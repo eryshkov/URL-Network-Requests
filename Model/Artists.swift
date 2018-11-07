@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Artists {
+struct Artists: Codable {
     var resultCount: Int
-    var result = [Artist]()
+    var results: [Artist]
 }

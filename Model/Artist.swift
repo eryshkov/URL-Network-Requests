@@ -8,15 +8,15 @@
 
 import Foundation
 
-struct Artist {
-    var artistName: String;
-    var trackName: String;
-    var trackViewUrl: String;
-    var collectionHdPrice: Int;
-    var artworkUrl30: String;
-    var artworkUrl60: String;
-    var artworkUrl100: String;
-    var longDescription: String;
-    var kind: String;
+struct Artist: Codable {
+    var artistName: String
+    var trackName: String?
+    var trackViewUrl: String?
+    var collectionHdPrice: Int?
+    var artworkUrl30: String?
+    var artworkUrl60: String?
+    var artworkUrl100: String?
+    var longDescription: String?
+    var kind: String?
     
 }
