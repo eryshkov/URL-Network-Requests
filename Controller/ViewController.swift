@@ -54,6 +54,9 @@ class ViewController: UIViewController {
                 do {
                     let jsonArtists = try jsonDecoder.decode(Artists.self, from: data)
                     self.artists = jsonArtists.results
+//                    DispatchQueue.main.async {
+////                        self.tableView.reloadData()
+//                    }
                     print(self.artists)
                 }catch let error {
                     print(error)
